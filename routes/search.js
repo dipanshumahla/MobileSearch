@@ -16,14 +16,19 @@ router.get("/", (req, res) => {
 
 router.post('/', (req, res) => {
     var query = req.body.search;
-    var data = mobiles.searchProduct(query);
+    mobiles.searchProduct(query).then(data => {
+        var response = { data: data };
 
-    var response = { data: data };
+        if (data.length < 1) response.status = false;
+        else response.status = true;
 
-    if (data.length < 1) response.status = false;
-    else response.status = true;
+        res.render('search', response);
+    });
 
-    res.render('search', response);
+    return;
+
+
+
 });
 
 module.exports = router;

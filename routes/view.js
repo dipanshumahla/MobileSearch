@@ -6,12 +6,9 @@ router.get("/:id", (req, res) => {
 
     var id = req.params.id;
     mobiles.getProduct(id).then(data => {
-        console.log(data);
-
         var response = { data: data };
-
-        if (data.length < 1) response.status = false;
-        else response.status = true;
+        if (data != null) response.status = true;
+        else response.status = false;
 
         res.render('view', response);
     });

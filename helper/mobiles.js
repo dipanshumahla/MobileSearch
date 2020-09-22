@@ -32,16 +32,16 @@ var getAllProducts = () => {
 }
 
 var getProduct = (id) => {
-    return new Promise((res, rej) => {
-        products.forEach((item) => {
-            if (item.id == id) res(item)
-        })
-    })
-
+    return new Promise(async (res, rej) => {
+        await products.forEach((item) => {
+            if (item.id == id) res(item);
+        });
+        res(null);
+    });
 }
 
 var searchProduct = (query) => {
-
+    return search(products, query);
 }
 
 var addProduct = (product) => {
@@ -49,4 +49,4 @@ var addProduct = (product) => {
     console.log(products);
 }
 
-module.exports = { getAllProducts, addProduct, getProduct, searchProduct: getAllProducts }
+module.exports = { getAllProducts, addProduct, getProduct, searchProduct: searchProduct }
