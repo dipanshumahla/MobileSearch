@@ -1,22 +1,26 @@
+var search = require('./search');
+
 var products = [
     {
         name: "Samsung",
+        id: "001",
         type: "mobile",
         weight: "206.8",
         price: "30000",
         color: "Red",
-        Features: [
+        features: [
             "2GB RAM",
             "32GB Storage"
         ]
     },
     {
         name: "Nokia",
+        id: "002",
         type: "mobile",
         weight: "106.8",
         price: "35000",
         color: "Black",
-        Features: [
+        features: [
             "4GB RAM",
             "64GB Storage"
         ]
@@ -24,13 +28,25 @@ var products = [
 ]
 
 var getAllProducts = () => {
+    return products.slice(0, 5);
+}
+
+var getProduct = (id) => {
+    return new Promise((res, rej) => {
+        products.forEach((item) => {
+            if (item.id == id) res(item)
+        })
+    })
+
+}
+
+var searchProduct = (query) => {
 
 }
 
 var addProduct = (product) => {
     products.push(product);
     console.log(products);
-
 }
 
-module.exports = { getAllProducts, addProduct }
+module.exports = { getAllProducts, addProduct, getProduct, searchProduct: getAllProducts }

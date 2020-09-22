@@ -11,6 +11,7 @@ router.post('/', (req, res) => {
     var data = req.body;
     data.features = data.features.split(';');
     var verify = validater.validateData(data);
+    data.id = Math.random().toString(36).substring(2);
 
 
     var response = {};

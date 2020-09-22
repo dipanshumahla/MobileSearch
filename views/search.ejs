@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+</head>
+
+<body>
+    <a href="/">Home</a><br><br>
+    <form action="/search" method="post">
+        <input type="text" name="search" id="" />
+        <input type="submit" value="Search" />
+    </form>
+    <% if(status){ %>
+    <ul>
+        <% data.forEach(item=>{%>
+        <li><a href="/view/<%= item.id %>"><%= item.name%></a></li>
+
+        <% }) %>
+    </ul>
+    <% }else{ %>
+    No result found
+    <% } %>
+</body>
+
+</html>

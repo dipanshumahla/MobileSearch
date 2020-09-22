@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View</title>
+</head>
+
+<body>
+    <a href="/">Home</a><br><br>
+    <form action="/search" method="post">
+        <input type="text" name="search" id="" />
+        <input type="submit" value="Search" />
+    </form><br>
+    Product Page<br><br>
+    <% if(status){ %>
+    Name: <%= data.name %><br>
+    Type: <%= data.type %><br>
+    Weight: <%= data.weight %><br>
+    Price: <%= data.price %><br>
+    Color: <%= data.color %><br>
+    <br>
+    Features:
+    <ul>
+        <% data.features.forEach(item=>{%>
+        <li><%= item %></li>
+
+        <% }) %>
+    </ul>
+    <% }else{ %>
+    No Product found
+    <% } %>
+</body>
+
+</html>
