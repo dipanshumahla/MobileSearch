@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New</title>
+</head>
+
+<body>
+    <% if(status != null) if(status){ %>
+    <p style="color: green;">Success</p>
+    <% }else{%>
+    <p style="color: red;">Failed</p>
+    <% } %>
+
+    <b>Add New Product</b><br><br>
+    <form action="/new" method="post" id="newForm">
+        <input type="text" name="name" placeholder="Product Name" /><br>
+        <input type="text" name="type" placeholder="Product Type" /><br>
+        <input type="text" name="weight" placeholder="Weight" /><br>
+        <input type="text" name="price" placeholder="Price" /><br>
+        <input type="text" name="color" placeholder="Color" /><br><br>
+        <div id="features">
+            <input type="button" value="Add New Feature" id="addNewButton" />
+        </div>
+        <input type="submit" value="Save" />
+    </form>
+</body>
+<script>
+    var form = document.getElementById('newForm');
+    var done = false;
+
+    form.addEventListener('submit', (e) => {
+        if (done) return;
+        e.preventDefault();
+        done = true;
+
+        var features_string = "";
+        var allfeatures = document.getElementsByClassName("feature");
+        for (let i = 0; i < allfeatures.length; i++) features_string += allfeatures[i].value + ';';
+
+        features_string = features_string.slice(0, -1);
+        var features = document.createElement("input");
+        features.type = "text";
+        features.style.display = "none";
+        features.name = "features";
+        features.value = features_string;
+
+
+        form.appendChild(features);
+        form.submit();
+    });
+
+    var addNewFeature = document.getElementById('addNewButton');
+
+    addNewFeature.addEventListener('click', e => {
+        var i = document.createElement("input");
+        i.type = "text";
+        i.classList.add("feature");
+        document.getElementById('features').insertBefore(i, addNewFeature);
+    })
+
+</script>
+
+</html>
